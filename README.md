@@ -7,6 +7,8 @@ JSON api, supports paginated product list, authentication, user account, cart an
 
 Database is easily interchangeable thanks to data provider layer. Currently MongoDB is used.
 
+![mongodb](http://wiki.huihoo.com/images/f/f3/Clojushop-mongodb.png)
+
 New version support Apache Cassandra. image storage use AWS S3.
 
 Note that this is a learning project - use at your own risk.
