@@ -5,7 +5,13 @@ Online store backend/api written in Clojure
 
 JSON api, supports paginated product list, authentication, user account, cart and payment.
 
-Database is easily interchangeable thanks to data provider layer. Currently MongoDB is used.
+Database is easily interchangeable thanks to data provider layer([com.novemberain/monger "1.7.0"], https://github.com/michaelklishin/monger). Currently MongoDB is used.
+
+      (:require[monger.core :as mg]
+               [monger.query :as mq]
+               [monger.collection :as mc]
+               [monger.operators :refer :all]
+               [monger.result :refer [ok? has-error?]])
 
 ![mongodb](http://wiki.huihoo.com/images/f/f3/Clojushop-mongodb.png)
 
@@ -31,6 +37,8 @@ Login (note use of cookie store - this will allow us to send next requests authe
 
 ```
 curl -i -H "Content-Type: application/json" -X POST -d '{"una":"user1", "upw":"test123"}' http://localhost:3000/user/login  --cookie "cookies.txt" --cookie-jar "cookies.txt" --location --verbose
+
+curl -i -H "Content-Type: application/json" -X POST -d '{"una":"huihoo", "upw":"huihoo"}' http://localhost:3000/user/login  --cookie "cookies.txt" --cookie-jar "cookies.txt" --location --verbose
 ```
 
 
