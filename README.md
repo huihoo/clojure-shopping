@@ -1,13 +1,13 @@
-Clojure shop
+Clojure Shopping 
 =========
 
 Online store backend/api written in Clojure
-
 
 JSON api, supports paginated product list, authentication, user account, cart and payment.
 
 Database is easily interchangeable thanks to data provider layer. Currently MongoDB is used.
 
+New version support Apache Cassandra. image storage use AWS S3.
 
 Note that this is a learning project - use at your own risk.
 
@@ -16,8 +16,6 @@ Note that this is a learning project - use at your own risk.
 ```
 lein ring server-headless
 ```
-
-
 
 ###### Example curl requests:
 
@@ -40,8 +38,6 @@ Get cart (authenticated request):
 curl -i -H --request GET 'http://localhost:3000/cart?scsz=640x960'  --cookie "cookies.txt" --cookie-jar "cookies.txt" --location --verbose
 ```
 
-
-
 ##### Unit tests: 
 ```
 lein test clojushop.test.handler
@@ -55,12 +51,9 @@ lein test :only clojushop.test.handler/test-users
 lein test :only clojushop.test.handler/test-payment
 ```
 
-
 ##### Example client app (iOS):
 
 https://github.com/i-schuetz/clojushop_client_ios
-
-
 
 
 ##### Api
@@ -84,9 +77,7 @@ Path  | Request type  | Authenticated  | Description  | Params
 /pay | POST | Yes | Executes payment and empties cart | to: credit card token, v: amount c: currency ISO code 
 
 
-
 The unit tests in https://github.com/i-schuetz/clojushop/blob/master/test/clojushop/test/handler.clj do request calls and response processing like a normal client and can help with further understanding about how to use the api.
-
 
 ##### Status codes
 
@@ -156,11 +147,12 @@ The items will then be filtered accordingly, such that the client gets only imag
 "img":{"pd":"http://ivanschuetz.com/img/cs/product_details/r2/blueberries.png","pl":"http://ivanschuetz.com/img/cs/product_list/r2/blueberries.png"}
 ```
 
-
 This is a very flexible implementation, since the client doesn't have to be modified when new resolutions are supported, and server can add arbitrary categories or new logic to determine which images fit best a certain screen size. Client only tells server e.g. "I want the images for the products list, and my screen size is 640x960", and uses whatever images the server delivers. This also works with orientation change, without additional changes - the client sends what currently is width and height and the server determines what fits best. It is not necessary to add additional identifiers for orientation or device type. Yet, orientation change opens the need for an improvement, namely that the client should not have to repeat the request only to get the images for the new orientation. This will probably be solved by calculating both resolutions categories interchanging width and height and send the client both images. In this case the request would keep the same, but the processing of the response would have to be adjusted.
 
-
 ##### Payment
+* Alipay (支付宝)
+* Weixin Payment (微信支付)
+* Stripe
 
 Stripe is used as payment system. A Stripe user account is necessary to test payments. The Stripe secret key has to be inserted in the calls. There is a placeholder in handler.clj called "your_stripe_secret_key" for this.
 
@@ -183,10 +175,12 @@ In order to allow maximal flexibility, each product is saved with a currency. Th
 
 Needs lots of online shop relevant stuff, like SKUs (currently Mongo id is used as identifier - very bad!), stock/inventory, improved security, validation, internationalization, etc. And of course, more features!
 
-
-
+support new payment system:  
+* Alipay (支付宝)
+* Weixin Payment (微信支付)
 
 #### License
+Copyright (C) 2016 Huihoo
 
 Copyright (C) 2014 Ivan Schütz
 
