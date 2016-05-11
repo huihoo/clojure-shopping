@@ -189,6 +189,11 @@ support new payment system:
 * Alipay (支付宝)
 * Weixin Payment (微信支付)
 
+Integration Rails like framework: [Conjure](https://github.com/macourtney/Conjure)
+* [ring](http://github.com/mmcgrana/ring)
+* [clj-record](http://github.com/duelinmarkers/clj-record/) inspired by Ruby on Rails’ ActiveRecord
+* [hiccup](https://github.com/weavejester/hiccup)
+ 
 #### License
 Copyright (C) 2016 Huihoo
 
