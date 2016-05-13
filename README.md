@@ -176,17 +176,17 @@ Test credit card data:
 
 More information about testing Stripe here: https://stripe.com/docs/testing
 
-### Apache Cassandra Storage model and JSON schema
+##### Currency
+
+In order to allow maximal flexibility, each product is saved with a currency. This may be subject to change, since it's difficult to handle the payment. Currently, the payment service accepts only one currency.
+
+##### Apache Cassandra Storage model and JSON schema
 * Users keyspace
 * Products keyspace
 * Carts keyspace
 * Orders keyspace
 * Fiance keyspace
 * Rules keyspace
-
-##### Currency
-
-In order to allow maximal flexibility, each product is saved with a currency. This may be subject to change, since it's difficult to handle the payment. Currently, the payment service accepts only one currency.
 
 ##### TODOs
 
@@ -197,6 +197,7 @@ support new payment system:
 * Weixin Payment (微信支付)
 
 Integration Rails like framework: [Conjure](https://github.com/macourtney/Conjure)
+* [Luminus](http://wiki.huihoo.com/wiki/Luminus) default framework.
 * [ring](http://github.com/mmcgrana/ring)
 * [clj-record](http://github.com/duelinmarkers/clj-record/) inspired by Ruby on Rails’ ActiveRecord
 * [hiccup](https://github.com/weavejester/hiccup)
