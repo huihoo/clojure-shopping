@@ -1,4 +1,4 @@
-Clojure Shopping 
+Clojure Shopping
 =========
 
 Online store backend/api written in Clojure
@@ -48,7 +48,7 @@ Get cart (authenticated request):
 curl -i -H --request GET 'http://localhost:3000/cart?scsz=640x960'  --cookie "cookies.txt" --cookie-jar "cookies.txt" --location --verbose
 ```
 
-##### Unit tests: 
+##### Unit tests:
 ```
 lein test clojushop.test.handler
 ```
@@ -75,16 +75,16 @@ Path  | Request type  | Authenticated  | Description  | Params
 /products/edit  | POST | Yes | Edits a product | na: name, des: description, img: image, pr: price, se: seller (all optional, but at least 1 required)
 /products/remove  | POST | Yes | Removes a product | id: product id
 /cart  | GET | Yes | Gets cart | scsz: Screen size e.g. 640x960
-/cart/add  | POST | Yes | Adds a product to cart | id: product id 
-/cart/remove  | POST | Yes | Removes a product from cart | id: product id 
-/cart/quantity | POST | Yes | Sets the quantity of cart item (upsert) | id: product id, qt: quantity 
-/user | GET | Yes | Gets current user | 
-/user/register | POST | No | Registers a user | na: name, em: email, pw: password 
+/cart/add  | POST | Yes | Adds a product to cart | id: product id
+/cart/remove  | POST | Yes | Removes a product from cart | id: product id
+/cart/quantity | POST | Yes | Sets the quantity of cart item (upsert) | id: product id, qt: quantity
+/user | GET | Yes | Gets current user |
+/user/register | POST | No | Registers a user | na: name, em: email, pw: password
 /user/edit | POST | Yes | Edits current user | na: name, em: email, pw: password (all optional, but at least 1 required)
-/user/login | POST | No | Logs in a user | username: name, password: password 
-/user/logout | GET | Yes | Logs out current user | 
+/user/login | POST | No | Logs in a user | username: name, password: password
+/user/logout | GET | Yes | Logs out current user |
 /user/remove | GET | Yes | Removes current user |
-/pay | POST | Yes | Executes payment and empties cart | to: credit card token, v: amount c: currency ISO code 
+/pay | POST | Yes | Executes payment and empties cart | to: credit card token, v: amount c: currency ISO code
 
 
 The unit tests in https://github.com/i-schuetz/clojushop/blob/master/test/clojushop/test/handler.clj do request calls and response processing like a normal client and can help with further understanding about how to use the api.
@@ -130,10 +130,10 @@ The img field of a product in the database would look like this (this implementa
 ```
 :img {
           :pl {
-            :1 "http://ivanschuetz.com/img/cs/product_list/r1/blueberries.png" 
+            :1 "http://ivanschuetz.com/img/cs/product_list/r1/blueberries.png"
             :2 "http://ivanschuetz.com/img/cs/product_list/r2/blueberries.png"}
           :pd {
-            :1 "http://ivanschuetz.com/img/cs/product_details/r1/blueberries.png" 
+            :1 "http://ivanschuetz.com/img/cs/product_details/r1/blueberries.png"
             :2 "http://ivanschuetz.com/img/cs/product_details/r2/blueberries.png"}
 }
 ```
@@ -148,7 +148,7 @@ When the client makes a request to get items that contain images, it must send t
 In the function get-res-cat [screen-size] in our handler  (https://github.com/i-schuetz/clojushop/blob/master/src/clojushop/handler.clj), we map this screen size to a resolution category. The algorithm to do this can be anything - for demonstrative purposes, we use this:
 
     (if (< (Integer. width) 500) :1 :2)
-    
+
 This is, if the screen width is less than 500px we map this to resolution category 1 and if it's bigger to 2.
 
 The items will then be filtered accordingly, such that the client gets only images suitable for their screensize. The image field of product in response would look like this:
@@ -176,6 +176,13 @@ Test credit card data:
 
 More information about testing Stripe here: https://stripe.com/docs/testing
 
+### Apache Cassandra Storage model and JSON schema
+* Users keyspace
+* Products keyspace
+* Carts keyspace
+* Orders keyspace
+* Fiance keyspace
+* Rules keyspace
 
 ##### Currency
 
@@ -185,7 +192,7 @@ In order to allow maximal flexibility, each product is saved with a currency. Th
 
 Needs lots of online shop relevant stuff, like SKUs (currently Mongo id is used as identifier - very bad!), stock/inventory, improved security, validation, internationalization, etc. And of course, more features!
 
-support new payment system:  
+support new payment system:
 * Alipay (支付宝)
 * Weixin Payment (微信支付)
 
@@ -193,7 +200,7 @@ Integration Rails like framework: [Conjure](https://github.com/macourtney/Conjur
 * [ring](http://github.com/mmcgrana/ring)
 * [clj-record](http://github.com/duelinmarkers/clj-record/) inspired by Ruby on Rails’ ActiveRecord
 * [hiccup](https://github.com/weavejester/hiccup)
- 
+
 #### License
 Copyright (C) 2016 Huihoo
 
