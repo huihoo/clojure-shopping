@@ -180,6 +180,9 @@ More information about testing Stripe here: https://stripe.com/docs/testing
 
 In order to allow maximal flexibility, each product is saved with a currency. This may be subject to change, since it's difficult to handle the payment. Currently, the payment service accepts only one currency.
 
+##### OrientDB Storage model and JSON schema
+
+
 ##### Apache Cassandra Storage model and JSON schema
 * Users keyspace
 * Products keyspace
